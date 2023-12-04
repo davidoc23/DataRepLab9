@@ -31,19 +31,27 @@ function BookItem(props) {
                     - The `to` prop specifies the destination URL, which includes the book ID appended to "/edit/".
                     - The `className` prop sets the CSS classes for styling the link as a button with a primary color. */}
                 <Link to={"/edit/" + props.myBook._id} className='btn btn-primary'>Edit</Link>
-                <Button variant='danger' onClick={
-                    (e)=>{
-                        e.preventDefault();
+                <Button
+                    variant='danger'  // Set the button style to a red/danger variant
+                    onClick={(e) => {  // Define the click event handler
+                        e.preventDefault();  // Prevent the default behavior of the button click (useful in forms)
 
-                        axios.delete('http://localhost:4000/api/book/' +props.myBook._id)
-                        .then((res)=>{
-                            let reload = props.Reload();
-                        })
-                        .catch();
-                    }
-                }>
-                    Delete
+                        // Make a DELETE request to the specified API endpoint using axios
+                        axios.delete('http://localhost:4000/api/book/' + props.myBook._id)
+                            .then((res) => {
+                                // If the DELETE request is successful, trigger the Reload function passed as a prop
+                                let reload = props.Reload();
+                            })
+                            .catch((error) => {
+                                // Handle any errors that occur during the DELETE request
+                                console.error('Error deleting book:', error);
+                            });
+                    }}
+                >
+                    {/* Add any content or text you want to display within the button */}
+                    Delete Book
                 </Button>
+
             </Card>
         </div>
     );

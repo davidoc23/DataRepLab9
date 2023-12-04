@@ -107,7 +107,7 @@ app.get('/api/book/:id', async (req, res) => {
 
 })
 
-//Delete a item from the datavase
+//Delete a item from the database
 app.delete('/api/book/:id', async(req, res)=>{
     console.log("Delete: " + req.params.id);
 
